@@ -11,7 +11,7 @@ class Post(models.Model):
         PUBLISHED = "PB", "Published"
         REJECTED = "RJ", "Rejected"
     # Relations
-    auther = models.ForeignKey(User, on_delete= models.CASCADE, related_name = "user_posts")
+    Author = models.ForeignKey(User, on_delete= models.CASCADE, default= 1, related_name = "user_posts")
     # Data fields
     Title = models.CharField(max_length = 250)
     Description = models.TextField()
@@ -28,5 +28,5 @@ class Post(models.Model):
             models.Index(fields=['-Publish'], name='publish_idx'),
         ]
     def __str__(self) -> str:
-        return self.Title
+        return str(self.Author)
     
