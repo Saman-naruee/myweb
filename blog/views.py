@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
+from . models import Post
 
 # Create your views here.
 
@@ -7,9 +8,22 @@ def index(request):
     return HttpResponse("index")
 
 def post_list(request):
-    return HttpResponse("post list")
+    posts = Post.Published.all()
+    context = {
+        'posts' : posts,
+    }
+    return render(request, "template1.html", context)
     
 
 def post_detail(request, id):
-    return HttpResponse(f"post: {id}")
+    try:
+        posts = Post.Published.get(id = id) 
+    except:
+        raise Http404("No Post Found!")
+    
+    context = {
+        'posts' : posts,
+    }
+    return render(request, "template2.html", context)
+    
     
