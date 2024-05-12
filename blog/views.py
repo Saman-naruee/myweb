@@ -12,7 +12,7 @@ def post_list(request):
     context = {
         'posts' : posts,
     }
-    return render(request, "template1.html", context)
+    return render(request, "blog/list.html", context)
     
 
 def post_detail(request, id):
@@ -24,6 +24,6 @@ def post_detail(request, id):
     context = {
         'posts' : posts,
     }
-    return render(request, "template2.html", context)
+    return render(request, "blog/detail.html", context)
     
     

@@ -5,7 +5,7 @@
     <head>
         <meta charset="UTF-8">
         
-        <title>{% block Title %}    {% endblock  %}</title>
+        <title>blog | {% block Title %}    {% endblock  %}</title>
         <link rel="stylesheet" type="test/css" href="{% static 'css/base.css'%}"> 
         {% block head %}    {% endblock  %}
 
@@ -13,9 +13,9 @@
 <html>
 <body>
     
+    {% block content %}     {% endblock  %}
     {% include 'partials/header.html' %}
     {% include 'partials/navigation.html' %}
-    {% block content %}     {% endblock  %}
     {% include 'partials/footer.html' %}
 
 </body>

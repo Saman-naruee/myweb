@@ -28,12 +28,13 @@ class Post(models.Model):
     status = models.CharField(max_length= 2, choices= Status.choices , default = Status.DRAFT)
 
     objects = models.Manager() # Original manager
-    Published = PublishedManager() # my own manager
+    Published = PublishedManager()# my own manager
 
     class Meta:
         ordering = ['-Publish']
+            # models.Index(fields = ['-Publish'], name='publish_idx')
         indexes = [
-            models.Index(fields=['-Publish'], name='publish_idx'),
+            models.Index(fields=['-Publish'])
         ]
     def __str__(self) -> str:
         return str(self.Author)
