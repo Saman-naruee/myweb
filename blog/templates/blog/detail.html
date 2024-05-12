@@ -1,1 +1,9 @@
-<h1> جزئیات پست ها <h1>
+{% extends 'parent/base.html' %}
+{% block Title %} post details {% endblock  %}
+{% block content %}
+    <h1>Post Details:</h1>
+    <h2>"{{post.Title}}" by {{post.Author}}</h2>
+    <p>{{post.Description|linebreaks}}</p>
+    <hr>
+    <h2>{{post.Created}}</h2>
+{% endblock  %}

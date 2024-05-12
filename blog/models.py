@@ -34,8 +34,8 @@ class Post(models.Model):
         ordering = ['-Publish']
             # models.Index(fields = ['-Publish'], name='publish_idx')
         indexes = [
-            models.Index(fields=['-Publish'])
+            models.Index(fields = ['-Publish'], name='publish_idx')
         ]
     def __str__(self) -> str:
-        return str(self.Author)
+        return self.Title
     
