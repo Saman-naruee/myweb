@@ -2,13 +2,15 @@
 {% block Title %} post list {% endblock  %}
 {% block content %}
     <h1>My Posts: </h1>
-
+<ol style="--length: {{ posts.count }}" role="list">
     {% for post in posts %}
-    <h3>
-        {#<a href="{% url 'blog:post_detail' post.id %}">{{post.Title}} </a>#}
-        <a href="{{post.get_absolute_url}}">{{post.Title}}</a>
-    </h3>
-    {{post.Description|truncatewords:10}}
+    <li style="--i: {{ forloop.counter}}">
+        <h3>
+            {#<a href="{% url 'blog:post_detail' post.id %}">{{post.Title}} </a>#}
+            <a href="{{post.get_absolute_url}}">{{post.Title}}</a>
+        </h3>
+        <p>{{post.Description|truncatewords:10}}</p>
+    </li>
     {% endfor %}
-    <hr>
+</ol>
 {% endblock  %}
