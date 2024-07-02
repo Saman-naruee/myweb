@@ -20,4 +20,6 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls', namespace = 'blog')),
+    # The first argument (r'^polls/') specifies the URL pattern to match (e.g., any URL starting with “polls/”).
+    path('polls/', include(('polls.urls', 'polls'))), 
 ]

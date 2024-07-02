@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django_jalali.db import models as jmodels
 from django.urls import reverse
+from django.utils.text import slugify
 
 
 # Managers
@@ -51,3 +52,7 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('blog:post_detail', args= [str(self.id)])
     
+    def save(self, *args, **kwargs):
+        if not self.id:  # Newly created object
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
