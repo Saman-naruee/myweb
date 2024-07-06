@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django_jalali',
     'django_extensions',
     'polls',
+    'events',
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event List</title>
+    <p>Upcomming Events</p>
+</head>
+<body>
+    <h1>Event Since Last Week Until Yesterday</h1>
+    <ul>
+        {% for event in last_week_events %}
+            <li>
+                {{ event.name}} : {{ event.date}}
+            </li>
+        {% empty %}
+            <p> No event found! </p>
+        {% endfor %}
+    </ul>
+    <h1>Future Events</h1>
+    <ul>
+        {% for event in future_events %}
+            <li>
+                {{ event.name}} : {{ event.date}}
+            </li>
+        {% empty %}
+            <p> No event found! </p>
+        {% endfor %}
+    </ul>
+    
+</body>
+</html>
