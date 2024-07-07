@@ -22,5 +22,6 @@ urlpatterns = [
     path('blog/', include('blog.urls', namespace = 'blog')),
     # The first argument (r'^polls/') specifies the URL pattern to match (e.g., any URL starting with “polls/”).
     path('polls/', include(('polls.urls', 'polls'))), 
+    path('', include('events.urls')),
     path('events/upcoming/', include('events.urls')),
-]
+] 
