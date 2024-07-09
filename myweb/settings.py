@@ -88,13 +88,22 @@ WSGI_APPLICATION = 'myweb.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'events', # polls
+        'NAME': 'alldata',
         'USER': 'postgres',
-        'PASSWORD': 'saman36117',
+        'PASSWORD': '36117',
         'HOST': 'localhost',  # Change if needed
         'PORT': 5432,         # Default PostgreSQL port
     }
 }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'events', # events
+    #     'USER': 'postgres',
+    #     'PASSWORD': 'saman36117',
+    #     'HOST': 'localhost',  # Change if needed
+    #     'PORT': 5432,         # Default PostgreSQL port
+    # }
+
 
 
 
