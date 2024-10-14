@@ -1,8 +1,11 @@
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, JsonResponse
 from . models import Post
+from .serializers import BlogSerializer
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import ListView, DeleteView
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse, JsonResponse
 
 
 # Create your views here.
@@ -11,23 +14,17 @@ def index(request):
     return HttpResponse("index")
 
 
-# class PostListView(ListView):
-#     # model = Post
-#     context_object_name = 'posts'
-#     queryset = Post.Published.all()
-#     paginate_by = 3
-#     template_name = 'blog/list.html'
+@api_view(['GET'])
 def PostListView(request):
     posts = Post.objects.all()
-    data = {
-        'posts': posts
-    }
-    return JsonResponse(data)
+    serializer = BlogSerializer(posts, many = True)
+    
+    return Response(serializer.data)
     
 
 class PostDetailView(DeleteView):
     queryset = Post.Published.all()
-    template_name = "blog/detail.html"
+    
 
 
 def post_detail(request, id):

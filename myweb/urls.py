@@ -4,6 +4,6 @@ from blog.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', PostListView, name='blog'),
+    path('blog/', include(('blog.urls', 'blog'))),
     path('polls/', include(('polls.urls', 'polls'))), 
 ] 
