@@ -31,7 +31,7 @@ class Post(models.Model):
     status = models.CharField(max_length= 2, choices= Status.choices , default = Status.DRAFT, verbose_name = 'وضعیت') 
 
     # objects = models.Manager() # Original manager
-    objects = jmodels.jManager()
+    objects = PublishedManager()
     Published = PublishedManager()# my own manager
 
     class Meta:
@@ -54,5 +54,5 @@ class Post(models.Model):
     
     def save(self, *args, **kwargs):
         if not self.id:  # Newly created object
-            self.slug = slugify(self.title)
+            self.slug = slugify(self.Title)
         super().save(*args, **kwargs)

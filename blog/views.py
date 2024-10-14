@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, JsonResponse
 from . models import Post
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import ListView, DeleteView
@@ -11,12 +11,18 @@ def index(request):
     return HttpResponse("index")
 
 
-class PostListView(ListView):
-    # model = Post
-    context_object_name = 'posts'
-    queryset = Post.Published.all()
-    paginate_by = 3
-    template_name = 'blog/list.html'
+# class PostListView(ListView):
+#     # model = Post
+#     context_object_name = 'posts'
+#     queryset = Post.Published.all()
+#     paginate_by = 3
+#     template_name = 'blog/list.html'
+def PostListView(request):
+    posts = Post.objects.all()
+    data = {
+        'posts': posts
+    }
+    return JsonResponse(data)
     
 
 class PostDetailView(DeleteView):
@@ -33,5 +39,5 @@ def post_detail(request, id):
     context = {
         'post' : post,
     }
-    return render(request, "blog/detail.html", context)
+    return JsonResponse(context)
     
