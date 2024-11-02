@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django_jalali.db import models as jmodels
 from django.urls import reverse
 from django.utils.text import slugify
+from django.core.validators import RegexValidator
 
 
 # Managers
@@ -56,3 +57,20 @@ class Post(models.Model):
         if not self.id:  # Newly created object
             self.slug = slugify(self.Title)
         super().save(*args, **kwargs)
+
+class Ticket(models.Model):
+    message = models.TextField(verbose_name = 'پیام')
+    email = models.EmailField(verbose_name = 'ایمیل')
+    name = models.CharField(max_length= 250, verbose_name = 'نام')
+    subject = models.CharField(max_length= 250, verbose_name = 'موضوع')
+    phone = models.CharField(
+        max_length= 11,
+        verbose_name = 'شماره تلفن',
+        help_text= 'شماره تلفن باید 11 رقم باشد',
+        validators=[
+            RegexValidator(
+                regex=r'^09\d{9}$',
+                message='شماره تلفن باید با 09 شروع شود و 11 رقم باشد.',
+            ),
+        ]
+    )
