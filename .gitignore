@@ -1,4 +1,9 @@
-__pycache__
-().py 
-db.sqlite3
+./__pycache__/
 blog/__pycache__/
+events/__pycache__/
+polls/__pycache__/
+.env
+env/
+.vscode/ 
+db.sqlite3
+().py 
