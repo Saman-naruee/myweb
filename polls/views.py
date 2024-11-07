@@ -56,3 +56,13 @@ def vote(request, question_id):
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
         return HttpResponseRedirect(reverse("polls:results", args=(question.id,)))
+
+
+def learning(request):
+    queryset = Question.objects.first()
+    data = queryset.question_text
+    content = {
+        'item': 'this item will be passed to html page',
+        'data': data
+    }
+    return render(request, 'polls/learning.html', content)

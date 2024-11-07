@@ -1,0 +1,35 @@
+/* styles.css */  
+.poll-fieldset {  
+    border: 2px solid #007BFF;  /* Blue border */  
+    padding: 20px;  
+    border-radius: 5px;  
+    background-color: #e2e9ec;  /* Light background */  
+}  
+
+.poll-legend {  
+    font-size: 24px;  /* Larger font */  
+    color: #007BFF;   /* Blue text */  
+    font-weight: bold;  
+}  
+
+.error-message {  
+    color: red;  /* Red for error messages */  
+}  
+
+.choice-option {  
+    margin: 10px 0; /* Spacing between choices */  
+    color: #0abfe8;
+}  
+
+.submit-button {  
+    background-color: #007BFF; /* Background color */  
+    color: white; /* Text color */  
+    border: none;  
+    padding: 10px 15px;  
+    border-radius: 5px; /* Rounded corners */  
+    cursor: pointer; /* Pointer cursor */  
+}  
+
+.submit-button:hover {  
+    background-color: #0056b3; /* Darker blue on hover */  
+}
