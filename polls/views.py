@@ -1,39 +1,32 @@
+from typing import Any
+from django.db.models.query import QuerySet
 from django.shortcuts import render
 from django.db.models import F
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
+from django.views import generic
 from .models import Choice, Question
 
 
+class IndexView(generic.ListView):
+    context_object_name = 'latest_question_list'
+    template_name = "polls/index.html"
 
-def index(request : HttpResponse) -> HttpResponse :
-    latest_question_list = Question.objects.order_by("-pub_date")[:5]
-    context = {"latest_question_list": latest_question_list}
-    return render(request, "polls/index.html", context)
+    def get_queryset(self) -> QuerySet[Any]:
+        return Question.objects.order_by('-pub_date')
 
-def detail(request : HttpResponse, question_id : int):
-    try:
-        question = Question.objects.get(id=question_id)
-    except Question.DoesNotExist:
-        return HttpResponse('Not Found', status = 404)
-    return render(
-        request=request,
-        template_name='polls/detail.html',
-        context={
-            'question':question
-        },
-            
-        
-    )
+
+class DetailsView(generic.DetailView):
+    model = Question
+    template_name = 'polls/detail.html'
+
+
+class ResultsView(generic.DetailView):
+    model = Question
+    template_name = "polls/results.html"
+
     
-def results(request, question_id):
-    question = get_object_or_404(Question, pk=question_id)
-    return render(request, "polls/results.html", {"question": question})
-
-
-# def vote(request : HttpResponse, question_id : int) -> HttpResponse :
-#     return HttpResponse(f"You're voting on question {question_id}.")
 
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
