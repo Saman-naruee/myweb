@@ -2,8 +2,9 @@ from typing import Any
 from django.db.models.query import QuerySet
 from django.shortcuts import render
 from django.db.models import F
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
+from django.utils import timezone
 from django.urls import reverse
 from django.views import generic
 from .models import Choice, Question
@@ -14,7 +15,7 @@ class IndexView(generic.ListView):
     template_name = "polls/index.html"
 
     def get_queryset(self) -> QuerySet[Any]:
-        return Question.objects.order_by('-pub_date')
+        return Question.objects.filter(pub_date__lte=timezone.now).order_by('-pub_date')
 
 
 class DetailsView(generic.DetailView):
