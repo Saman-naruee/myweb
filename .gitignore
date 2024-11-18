@@ -8,3 +8,5 @@ env/
 db.sqlite3
 ().py 
 __pycache__
+htmlcov/
+.coverage
