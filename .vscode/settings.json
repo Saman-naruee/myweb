@@ -1,3 +1,4 @@
 {
-    "CodeGPT.apiKey": "CodeGPT Plus Beta"
+    "CodeGPT.apiKey": "CodeGPT Plus Beta",
+    "openInBrowser.default": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"
 }

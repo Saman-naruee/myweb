@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os, sys
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,11 +41,12 @@ INSTALLED_APPS = [
     
     # Third Party Apps
     'rest_framework',
+    'django_jalali',
+    'django_extensions',
+    "debug_toolbar",
 
     # installed apps
     'blog.apps.BlogConfig',
-    'django_jalali',
-    'django_extensions',
     'polls',
     'events',
 ]
@@ -57,6 +59,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+
+]
+INTERNAL_IPS = [
+    '127.0.0.1',
+    'localhost',
+    '127.0.0.1:8000',
+    'localhost:8000',
 ]
 
 ROOT_URLCONF = 'myweb.urls'
@@ -111,8 +121,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-# LANGUAGE_CODE = 'en-us'
-LANGUAGE_CODE = 'fa-ir'
+LANGUAGE_CODE = 'en-us'
+# LANGUAGE_CODE = 'fa-ir'
 
 TIME_ZONE = 'Asia/Tehran'
 USE_I18N = True
@@ -129,11 +139,9 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+ 
 
 
-# settings.py  
-
-import os  
 
 # Static files (CSS, JavaScript, Images)  
 STATIC_URL = '/static/'
@@ -141,3 +149,6 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'polls/static'),
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
+ROOT_URLCONF = 'myweb.urls'
