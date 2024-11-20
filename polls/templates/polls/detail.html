@@ -1,7 +1,7 @@
 <!-- detail.html -->  
  {% load static %}
 <head>  
-    <link rel="stylesheet" type="text/css" href="{% static 'polls/css/styles.css' %}">  
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/styles.css' %}">  
 </head>
 <form action="{% url 'polls:vote' question.id %}" method="post">  
     {% csrf_token %}  
