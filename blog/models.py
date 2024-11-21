@@ -6,7 +6,6 @@ from django.urls import reverse
 from django.utils.text import slugify
 from django.core.validators import RegexValidator
 
-
 # Managers
 class PublishedManager(models.Manager):
     def get_queryset(self) -> models.QuerySet:
@@ -69,8 +68,16 @@ class Ticket(models.Model):
         help_text= 'شماره تلفن باید 11 رقم باشد',
         validators=[
             RegexValidator(
-                regex=r'^09\d{9}$',
-                message='شماره تلفن باید با 09 شروع شود و 11 رقم باشد.',
+                regex=r'^09\d{9}$', 
+                message='شماره تلفن باید با 09 شروع شود و جمعا 11 رقم باشد.',
             ),
         ]
     )
+
+    def __str__(self) -> str:
+        return str(self.subject)
+    
+    class Meta:
+        verbose_name = 'تیکت'
+        verbose_name_plural = 'تیکت ها'
+

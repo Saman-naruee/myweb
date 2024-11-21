@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Success</title>
+</head>
+<body>
+    <h1>{{ message }}</h1>
+    <p>You will be redirected in <span id="countdown">3</span> seconds...</p>
+
+    <script>
+        let timeLeft = 3;
+        const countdownElement = document.getElementById('countdown');
+        
+        const countdown = setInterval(function() {
+            timeLeft--;
+            countdownElement.textContent = timeLeft;
+            
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                window.location.href = "{{ redirect_url }}";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

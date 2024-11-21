@@ -1,10 +1,12 @@
-from . models import Post
+from . models import Post, Ticket
+from .forms import TicketForm
 from .serializers import BlogSerializer
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import ListView, DeleteView
-from django.shortcuts import render, get_object_or_404
+from django.urls import reverse
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, JsonResponse
 
 
@@ -38,3 +40,28 @@ def post_detail(request, id):
     }
     return JsonResponse(context)
     
+
+def ticket(request):
+    if request.method == 'POST':
+        form = TicketForm(request.POST)
+        if form.is_valid():
+            ticket_obj = Ticket.objects.create()
+            ticket_obj.name = form.cleaned_data['name']
+            ticket_obj.email = form.cleaned_data['email']
+            ticket_obj.message = form.cleaned_data['message']
+            ticket_obj.subject = form.cleaned_data['subject']
+            ticket_obj.phone = form.cleaned_data['phone']
+            ticket_obj.save()
+            return render(request, 'forms/success.html', {
+                'message': 'Ticket Created!',
+                'redirect_url': reverse('blog:ticket')
+            })
+        
+        # when form is not valid:
+        return render(request, 'forms/success.html', {
+                'message': 'Form is not valid!',
+                'redirect_url': reverse('blog:ticket')
+            })
+    else:
+        form = TicketForm()
+        return render(request, 'forms/ticket.html', {'form': form})

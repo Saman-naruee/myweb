@@ -23,4 +23,10 @@ class PostAdmin(admin.ModelAdmin):
     prepopulated_fields = {'Slug': ('Title',)}
     list_editable =['status']
     # list_display_links = ['Author']
-    
+
+@admin.register(Ticket)
+class TicketAdmin(admin.ModelAdmin):
+    list_display = ['name', 'email', 'message', 'subject', 'phone']
+    ordering = ('name', 'email')
+    list_filter = ['name', 'email']
+    search_fields = ['name', 'email', 'message']
