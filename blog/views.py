@@ -45,13 +45,15 @@ def ticket(request):
     if request.method == 'POST':
         form = TicketForm(request.POST)
         if form.is_valid():
-            ticket_obj = Ticket.objects.create()
-            ticket_obj.name = form.cleaned_data['name']
-            ticket_obj.email = form.cleaned_data['email']
-            ticket_obj.message = form.cleaned_data['message']
-            ticket_obj.subject = form.cleaned_data['subject']
-            ticket_obj.phone = form.cleaned_data['phone']
-            ticket_obj.save()
+            FCD = form.cleaned_data
+            # form.save()
+            Ticket.objects.create(
+                name = FCD['name'],
+                email = FCD['email'],
+                message = FCD['message'],
+                subject = FCD['subject'],
+                phone = FCD['phone'],
+            )
             return render(request, 'forms/success.html', {
                 'message': 'Ticket Created!',
                 'redirect_url': reverse('blog:ticket')
