@@ -3,9 +3,19 @@
 Ticket form
 {% endblock %}
 {% block content %}
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="ثبت">
-    </form>
+    <div style="max-width: 500px; margin: 0 auto; padding: 20px;">
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; margin-bottom: 5px;">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.errors %}
+                        <span style="color: red; font-size: 14px;">{{ field.errors }}</span>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <input type="submit" value="ثبت" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer;">
+        </form>
+    </div>
 {% endblock %}
