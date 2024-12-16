@@ -4,19 +4,30 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>blog | {% block Title %}    {% endblock  %}</title>
         <link rel="stylesheet" type="test/css" href="{% static 'css/base.css'%}"> 
         {% block head %}    {% endblock  %}
-
     </head>
 <html>
-<body>
-    
-    {% block content %}     {% endblock  %}
-    {% include 'partials/header.html' %}
-    {% include 'partials/navigation.html' %}
-    {% include 'partials/footer.html' %}
-
+<body bgcolor="#f0f0f0" text="#333333">
+    <table width="80%" align="center" cellpadding="20" cellspacing="0">
+        <tr>
+            <td>
+                {% include 'partials/header.html' %}
+                {% include 'partials/navigation.html' %}
+                
+                <table width="100%" bgcolor="white" cellpadding="20" cellspacing="0">
+                    <tr>
+                        <td>
+                            {% block content %}     {% endblock  %}
+                        </td>
+                    </tr>
+                </table>
+                
+                {% include 'partials/footer.html' %}
+            </td>
+        </tr>
+    </table>
 </body>
 </html>
