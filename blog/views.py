@@ -46,7 +46,6 @@ def ticket(request):
         form = TicketForm(request.POST)
         if form.is_valid():
             FCD = form.cleaned_data
-            # form.save()
             Ticket.objects.create(
                 name = FCD['name'],
                 email = FCD['email'],
@@ -59,11 +58,6 @@ def ticket(request):
                 'redirect_url': reverse('blog:ticket')
             })
         
-        # when form is not valid:
-        return render(request, 'forms/success.html', {
-                'message': 'Form is not valid!',
-                'redirect_url': reverse('blog:ticket')
-            })
     else:
         form = TicketForm()
-        return render(request, 'forms/ticket.html', {'form': form})
+    return render(request, 'forms/ticket.html', {'form': form})
