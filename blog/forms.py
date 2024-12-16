@@ -20,3 +20,15 @@ class TicketForm(forms.Form):
         if not phone.isdigit():
             raise forms.ValidationError('شماره تلفن باید عدد باشد')
         return phone
+
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        if not email.endswith('@gmail.com'):
+            raise forms.ValidationError("به پایان برسد @gmail.com ایمیل حتما باید با")
+        return email
+
+    def clean_message(self):
+        message = self.cleaned_data['message']
+        if len(message) < 10:
+            raise forms.ValidationError('پیام شما باید حداقل 10 کاراکتر باشد')
+        return message
